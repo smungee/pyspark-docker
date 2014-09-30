@@ -59,8 +59,8 @@ This should place you in a python prompt (=>>>=)
 
 To verify pyspark, run the following example Spark program:
 #+begin_src python
->>> data = [1, 2, 3, 4, 5]
->>> sc.parallelize(data).count()
+data = [1, 2, 3, 4, 5]
+sc.parallelize(data).count()
 #+end_src
 
 This should print a bunch of debugging output, and on the last line,
@@ -69,9 +69,10 @@ it should print the output, "5"
 To verify scikit-learn, run the following example program:
 
 #+begin_src python
->>> from sklearn import svm
->>> clf = svm.SVC(gamma=0.001, C=100.)
->>> clf.fit(digits.data[:-1], digits.target[:-1])
+from sklearn import svm, datasets
+clf = svm.SVC(gamma=0.001, C=100.)
+digits = datasets.load_digits()
+clf.fit(digits.data[:-1], digits.target[:-1])
 #+end_src
 
 You should see output like:
