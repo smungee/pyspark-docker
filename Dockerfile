@@ -3,7 +3,7 @@ MAINTAINER smungee
 
 #RUN yum -y install numpy scipy python-matplotlib gcc gcc-c++
 
-# Following needed to build scikit-learn
+# Following needed to build numpy, scikit-learn
 RUN yum -y install gcc gcc-c++ lapack lapack-devel blas blas-devel python-devel
 RUN yum clean all
 

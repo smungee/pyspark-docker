@@ -1,9 +1,11 @@
 
 This repo helps you to run Spark (on Docker) with the following installed:
 
-1. pySpark on Hadoop
-2. numpy
-3. scikit-learn
+1. pySpark (Spark 1.1.0) on Hadoop 2.5.1
+2. python 2.6.6
+3. numpy 1.9.0
+4. scipy 0.14.0
+5. scikit-learn 0.15.2
 
 * Setting up (one-time only)
 
@@ -32,20 +34,17 @@ Make sure that docker is installed and is runnable from the command-line.
 
 * Starting pyspark
 
-1. Build the docker image, by running the following command in the
-   same directory as this =README= file. (The command will be slow the
-   first time (since numpy and scikitlearn need to be compiled from
-   source, but the result is cached. This step should only be repeated
-   if you modify =Dockerfile=)
+1. Pull the docker image
 
-#+begin_src sh
-$ docker build -t pyspark-docker .
+#+begin_src 
+docker pull smungee/pyspark-docker:latest
 #+end_src
+
 
 2. Run the following command to start the container and get a prompt
 
 #+begin_src sh
-docker run -i -t -h pyspark-docker /etc/bootstrap.sh -bash
+docker run -i -t -h smungee/pyspark-docker:latest /etc/bootstrap.sh -bash
 #+end_src
 
 3. Start pyspark:
@@ -55,5 +54,41 @@ cd /usr/local/spark/bin
 ./pyspark
 #+end_src
 
-That's it! :)
+This should place you in a python prompt (=>>>=)
 
+4. Verify installation:
+
+To verify pyspark, run the following example Spark program:
+#+begin_src 
+>>> data = [1, 2, 3, 4, 5]
+>>> sc.parallelize(data).count()
+#+end_src
+
+This should print a bunch of debugging output, and on the last line,
+it should print the output, "5"
+
+To verify scikit-learn, run the following example program:
+
+#+begin_src python
+>>> from sklearn import svm
+>>> clf = svm.SVC(gamma=0.001, C=100.)
+>>> clf.fit(digits.data[:-1], digits.target[:-1])
+#+end_src
+
+You should see output like:
+#+begin_src 
+SVC(C=100.0, cache_size=200, class_weight=None, coef0=0.0, degree=3,
+  gamma=0.001, kernel='rbf', max_iter=-1, probability=False,
+  random_state=None, shrinking=True, tol=0.001, verbose=False)
+#+end_src
+
+* (OPTIONAL) Building the docker image yourself
+
+You can build this docker image, by running the following command in
+the same directory as this =README= file. (The command will be slow
+the first time (since numpy and scikitlearn need to be compiled from
+source, but the result is cached. This step should only be repeated if you modify =Dockerfile=)
+
+#+begin_src sh
+$ docker build -t pyspark-docker .
+#+end_src
