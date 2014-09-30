@@ -21,7 +21,6 @@ boot2docker up
 # The following URL is output as a result of the above "boot2docker up" command. 
 export DOCKER_HOST=tcp://192.168.59.103:2375
 #+end_src
-
 4. Install docker:
 #+begin_src sh
 brew install docker
