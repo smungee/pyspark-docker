@@ -1,7 +1,7 @@
 
-This repo helps you to run Spark (on Docker) with the following installed:
+This Docker image helps you to run Spark (on Docker) with the following installed:
 
-1. pySpark (Spark 1.1.0) on Hadoop 2.5.1
+1. [[https://spark.apache.org/][pySpark]] (Spark 1.1.0) on Hadoop 2.5.1
 2. python 2.6.6
 3. numpy 1.9.0
 4. scipy 0.14.0
@@ -12,7 +12,10 @@ This repo helps you to run Spark (on Docker) with the following installed:
 ** On MacOSX:
 *** 1. Install [[http://brew.sh][homebrew]]
 *** 2. Install [[https://www.virtualbox.org/wiki/Downloads][Virtualbox]]
-*** 3. Install boot2docker:
+*** 3. Install boot2docker
+
+Run the following commands in your MacOS terminal.
+
 #+begin_src sh
 brew install boot2docker
 boot2docker init
@@ -21,6 +24,9 @@ boot2docker up
 export DOCKER_HOST=tcp://192.168.59.103:2375
 #+end_src
 *** 4. Install docker:
+
+Run the following commands in your MacOS terminal.
+
 #+begin_src sh
 brew install docker
 docker version
@@ -31,7 +37,12 @@ docker version
 Make sure that docker is installed and is runnable from the command-line.  
 
 * Starting pyspark
+
+
 ** 1. Pull the docker image
+
+Run the following commands in your MacOS terminal (make sure that
+=$DOCKER_HOST= is set correctly)
 
 #+begin_src 
 docker pull smungee/pyspark-docker:latest
@@ -85,9 +96,10 @@ SVC(C=100.0, cache_size=200, class_weight=None, coef0=0.0, degree=3,
 * (OPTIONAL) Building the docker image yourself
 
 You can build this docker image, by running the following command in
-the same directory as this =README= file. (The command will be slow
-the first time (since numpy and scikitlearn need to be compiled from
-source, but the result is cached. This step should only be repeated if you modify =Dockerfile=)
+the same directory as this =README= file. The command will be slow (a
+few minutes) the first time, since numpy and scikitlearn need to be
+compiled from source, but the result is then cached. This step should
+only be necessary if you modify =Dockerfile=
 
 #+begin_src sh
 $ docker build -t pyspark-docker .
