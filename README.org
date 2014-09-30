@@ -41,7 +41,7 @@ docker pull smungee/pyspark-docker:latest
 #+end_src
 
 
-2. Run the following command to start the container and get a prompt
+2. Run the following command to start the container and get a bash prompt
 
 #+begin_src sh
 docker run -i -t -h smungee/pyspark-docker:latest /etc/bootstrap.sh -bash
@@ -59,7 +59,7 @@ This should place you in a python prompt (=>>>=)
 4. Verify installation:
 
 To verify pyspark, run the following example Spark program:
-#+begin_src 
+#+begin_src python
 >>> data = [1, 2, 3, 4, 5]
 >>> sc.parallelize(data).count()
 #+end_src
