@@ -9,10 +9,10 @@ This repo helps you to run Spark (on Docker) with the following installed:
 
 * Setting up (one-time only)
 
-** On Mac:
-*** Install [[http://brew.sh][homebrew]]
-*** Install [[https://www.virtualbox.org/wiki/Downloads][Virtualbox]]
-*** Install boot2docker:
+** On MacOSX:
+*** 1. Install [[http://brew.sh][homebrew]]
+*** 2. Install [[https://www.virtualbox.org/wiki/Downloads][Virtualbox]]
+*** 3. Install boot2docker:
 #+begin_src sh
 brew install boot2docker
 boot2docker init
@@ -20,7 +20,7 @@ boot2docker up
 # The following URL is output as a result of the above "boot2docker up" command. 
 export DOCKER_HOST=tcp://192.168.59.103:2375
 #+end_src
-*** Install docker:
+*** 4. Install docker:
 #+begin_src sh
 brew install docker
 docker version
@@ -31,7 +31,7 @@ docker version
 Make sure that docker is installed and is runnable from the command-line.  
 
 * Starting pyspark
-** Pull the docker image
+** 1. Pull the docker image
 
 #+begin_src 
 docker pull smungee/pyspark-docker:latest
@@ -43,7 +43,7 @@ docker pull smungee/pyspark-docker:latest
 Run the following command to start the container and get a bash prompt
 
 #+begin_src sh
-docker run -i -t -h smungee/pyspark-docker:latest /etc/bootstrap.sh -bash
+docker run -i -t -h sandbox smungee/pyspark-docker:latest /etc/bootstrap.sh -bash
 #+end_src
 
 ** Start pyspark
