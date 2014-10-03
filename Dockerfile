@@ -12,4 +12,9 @@ RUN python get-pip.py
 RUN pip install -U numpy scipy scikit-learn
 #RUN easy_install -U cython scikit-image
 
+# Reduce number of warning messages
+ADD log4j.properties /usr/local/spark/conf/log4j.properties
+
+# Needed for Spark to run in Yarn mode
+ENV MASTER yarn
 CMD ["/etc/bootstrap.sh", "-d"]

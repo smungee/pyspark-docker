@@ -60,12 +60,10 @@ docker run -i -t -h sandbox smungee/pyspark-docker:latest /etc/bootstrap.sh -bas
 ** 3. Start pyspark
 
 #+begin_src 
-cd /usr/local/spark/bin
-./pyspark --master yarn
+/usr/local/spark/bin/pyspark
 #+end_src
 
 This should place you in a python prompt (=>>>=)
-
 ** 4. Verify installation
 
 To verify pyspark, run the following example Spark program:
@@ -104,3 +102,5 @@ only be necessary if you modify =Dockerfile=
 #+begin_src sh
 $ docker build -t pyspark-docker .
 #+end_src
+* Troubleshooting
+If you are unable to access HDFS from pyspark, try running pyspark with the =--master yarn= flag.
