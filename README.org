@@ -61,7 +61,7 @@ docker run -i -t -h sandbox smungee/pyspark-docker:latest /etc/bootstrap.sh -bas
 
 #+begin_src 
 cd /usr/local/spark/bin
-./pyspark
+./pyspark --master yarn
 #+end_src
 
 This should place you in a python prompt (=>>>=)
